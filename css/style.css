@@ -8,6 +8,7 @@ html, body {
     
     height: calc(100% - 30px);
 }
+
 #chatbox {
 	margin-left: 5px;
 	position: fixed;
@@ -20,13 +21,14 @@ html, body {
 #chatSend{
     height: 40px;
     position: fixed;
-	bottom: 37px;
+	bottom: 25px;
+    right: 15px;
 }
+
+.wysihtml5-sandbox p{margin: 0px;}
 
 #chattext{
     height: 60px;
-    font-family: sans-serif;
-    line-height: 15px;
 }
 
 .absolute-center {

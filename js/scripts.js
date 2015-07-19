@@ -48,4 +48,10 @@ function changediv(){
     $("#main").load("chat.html #main");
 }
 
+function sendMessage(message){
+    $('#chattext').data("wysihtml5").el.context.innerHTML = "";
+    
+    // TODO: Parse line breaks, bold, etc
+}
+
 
