@@ -9,6 +9,7 @@ function Irc (host, port, nick, password) {
     
     this.connection.connected = false;
     this.connection.totallyconnected = false;
+    this.connection.alreadyerrored = false;
     
     // When the connection is open, send some data to the server
     this.connection.onopen = function () {
@@ -47,11 +48,13 @@ function Irc (host, port, nick, password) {
             this.lsend("USER " + this.user +" 8 * :" + this.realname);
         }else if(ircdata['verb'] == "904"){ // SASL auth error
             console.warn("Auth error.");
+            this.alreadyerrored = true;
             unlockform()
             $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error authenticating</b><br/> Maybe your user/password is wrong?");
             $('#formAlertBox').removeClass('hidden');
         }else if(ircdata['verb'] == "433") { //Nickname on use
                 console.warn("Nick in use!");
+                this.alreadyerrored = true;
                 unlockform();
                 $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error</b><br/> Your nickname is already in use, try another nick or wait until it become available");
                 $('#formAlertBox').removeClass('hidden');
@@ -60,7 +63,7 @@ function Irc (host, port, nick, password) {
                 changediv();
          }else if(ircdata['verb'] == 'PING'){ //Ping? Pong!
                 this.lsend("PONG "+ircdata['params'][0]);
-         }else if(ircdata['verb'] == "ERROR"){ // disconnected from the IRC
+         }else if(ircdata['verb'] == "ERROR" && this.alreadyerrored == false){ // disconnected from the IRC
             if(this.totallyconnected == false){
                 console.warn("Connection closed!");
                 unlockform()
