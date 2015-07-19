@@ -51,7 +51,7 @@ function Irc (host, port, nick, password) {
             $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error authenticating</b><br/> Maybe your user/password is wrong?");
             $('#formAlertBox').removeClass('hidden');
         }else if(ircdata['verb'] == "433") { //Nickname on use
-                console.warn("Nick on use!");
+                console.warn("Nick in use!");
                 unlockform()
                 $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error</b><br/> Your nickname is already in use, try another nick or wait until it become available");
                 $('#formAlertBox').removeClass('hidden');
