@@ -1,0 +1,12 @@
+#main {
+	overflow: auto;
+	height: calc(100% - 50px);
+}
+#chatbox {
+	margin-left: 5px;
+	position: fixed;
+	bottom: 0;
+	right: 0px;
+	left: 0px;
+	height: 30px;
+}
