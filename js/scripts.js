@@ -35,7 +35,8 @@ function connect(data){
 
 $(document).ready(function(){
     $(function() {
-        $('#btnSubmit').on('click', function() {
+        $('#login_form').on('submit', function(e) {
+            e.preventDefault();
             var data = $('#login_form').serializeObject();
             console.debug(data);
             
