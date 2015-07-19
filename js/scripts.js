@@ -43,5 +43,8 @@ $(document).ready(function(){
         });
     });
 });
+function changediv(){
+    $("#main").load("chat.html #main");
+}
 
 

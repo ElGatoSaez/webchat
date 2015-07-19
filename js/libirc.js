@@ -52,16 +52,21 @@ function Irc (host, port, nick, password) {
             $('#formAlertBox').removeClass('hidden');
         }else if(ircdata['verb'] == "433") { //Nickname on use
                 console.warn("Nick in use!");
-                unlockform()
+                unlockform();
                 $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error</b><br/> Your nickname is already in use, try another nick or wait until it become available");
                 $('#formAlertBox').removeClass('hidden');
+         }else if(ircdata['verb'] == '001'){ //Ready!
+                this.totallyconnected = true;
+                changediv();
+         }else if(ircdata['verb'] == 'PING'){ //Ping? Pong!
+                this.lsend("PONG "+ircdata['params'][0]);
          }else if(ircdata['verb'] == "ERROR"){ // disconnected from the IRC
             if(this.totallyconnected == false){
                 console.warn("Connection closed!");
                 unlockform()
                 $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error</b><br/> The connection to the chat was suddenly terminated :(");
                 $('#formAlertBox').removeClass('hidden');
-         }
+            }
         }
     };
 }
