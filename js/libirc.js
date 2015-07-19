@@ -42,20 +42,26 @@ function Irc (host, port, nick, password) {
         }else if(ircdata['verb'] == "AUTHENTICATE" && ircdata['params'][0] == "+"){
             this.lsend("AUTHENTICATE " + btoa(this.nick + "\0" + this.nick + "\0" + this.password));
         }else if(ircdata['verb'] == "903"){ // SASL auth successful!
-            
+            this.lsend("CAP END");
+            this.lsend("NICK "+this.nick);
+            this.lsend("USER " + this.user +" 8 * :" + this.realname);
         }else if(ircdata['verb'] == "904"){ // SASL auth error
             console.warn("Auth error.");
             unlockform()
             $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error authenticating</b><br/> Maybe your user/password is wrong?");
             $('#formAlertBox').removeClass('hidden');
-        }else if(ircdata['verb'] == "ERROR"){ // disconnected from the IRC
+        }else if(ircdata['verb'] == "433") { //Nickname on use
+                console.warn("Nick on use!");
+                unlockform()
+                $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error</b><br/> Your nickname is already in use, try another nick or wait until it become available");
+                $('#formAlertBox').removeClass('hidden');
+         }else if(ircdata['verb'] == "ERROR"){ // disconnected from the IRC
             if(this.totallyconnected == false){
                 console.warn("Connection closed!");
                 unlockform()
                 $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error</b><br/> The connection to the chat was suddenly terminated :(");
                 $('#formAlertBox').removeClass('hidden');
-            }
-
+         }
         }
     };
 }
