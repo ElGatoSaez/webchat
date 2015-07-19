@@ -54,4 +54,17 @@ function sendMessage(message){
     // TODO: Parse line breaks, bold, etc
 }
 
-
+$(function() {
+    $('#groupname').on('keypress', function(e) {
+        if (e.which == 32)
+            return false;
+    });
+});
+$(function() {
+        $('#join_form').on('submit', function(e) {
+            e.preventDefault();
+            var data = $('#join_form').serializeObject();
+            console.debug(data);
+            irc.lsend("JOIN "+data["group_name"]);
+        });
+});
