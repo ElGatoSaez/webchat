@@ -15,6 +15,14 @@ $.fn.serializeObject = function()
     return o;
 };
 
+function unlockform(){
+    $('#nick').attr('disabled', false);
+    $('#password').attr('disabled', false);
+    $('#remember').attr('disabled', false);
+    $('#btnSubmit').button('not loading'); // :p
+    $('#btnSubmit').html('Log in');
+}
+
 function connect(data){
     console.info("Connecting...");
     $('#nick').attr('disabled', true);

@@ -7,7 +7,8 @@ function Irc (host, port, nick, password) {
     this.connection.realname = "Hira's WebChat";
     this.connection.user = "webchat";
     
-    this.connected = false;
+    this.connection.connected = false;
+    this.connection.totallyconnected = false;
     
     // When the connection is open, send some data to the server
     this.connection.onopen = function () {
@@ -44,12 +45,17 @@ function Irc (host, port, nick, password) {
             
         }else if(ircdata['verb'] == "904"){ // SASL auth error
             console.warn("Auth error.");
-            $('#nick').attr('disabled', false);
-            $('#password').attr('disabled', false);
-            $('#remember').attr('disabled', false);
-            $('#btnSubmit').button('');
+            unlockform()
             $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error authenticating</b><br/> Maybe your user/password is wrong?");
             $('#formAlertBox').removeClass('hidden');
+        }else if(ircdata['verb'] == "ERROR"){ // disconnected from the IRC
+            if(this.totallyconnected == false){
+                console.warn("Connection closed!");
+                unlockform()
+                $('#formAlertBox').html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> <b>Error</b><br/> The connection to the chat was suddenly terminated :(");
+                $('#formAlertBox').removeClass('hidden');
+            }
+
         }
     };
 }
