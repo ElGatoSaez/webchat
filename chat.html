@@ -7,111 +7,112 @@
 
 	<title>Hira</title>
 
-	<meta name="description" content="Source code generated using layoutit.com">
 	<meta name="author" content="Hira.io">
 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap3-wysihtml5.min.css">
+    <link href="css/style.css" rel="stylesheet">
 
   </head>
   <body>
 
-	<div class="container-fluid" id="main">
-	<div class="row">
-		<div class="col-md-12">
-			<nav class="navbar navbar-default navbar-static-top" role="navigation">
-				<div class="navbar-header">
-					 
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-					</button> <a class="navbar-brand" href="/">Hira</a>
-				</div>
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle glyphicon glyphicon-menu-hamburger" data-toggle="dropdown"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">Join channel</a>
-								</li>
-								<li>
-									<a href="#">Send private message</a>
-								</li>
-								<li>
-									<a href="#">Settings</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="#">FAQ</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									<a href="#">About</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control">
-						</div> 
-						<button type="submit" class="btn btn-default">
-							Search
-						</button>
-					</form>
-				</div>
-				
-			</nav>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<div class="list-group">
-				<a href="#" class="list-group-item active">Channels</a>
-				<!--Channels list-->
-				<a href="#frame-test" class="list-group-item" data-toggle="tab">
-					<span class="badge">14</span>#test
-				</a>
-				<a href="#frame-help" class="list-group-item" data-toggle="tab">
-					<span class="badge">0</span>#help
-				</a>
-			</div>
-		</div>
-		<div class="col-md-10">
-		<!--Messages box-->
-			<div class="tab-content">
-				<div class="media well tab-pane fade in active" id="frame-test">
-					 <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src="http://lorempixel.com/64/64/" class="media-object"></a>
-					<div class="media-body">
-						<h4>CoolNick</h4>
-						Test message 124
-					</div>
-				</div>
-				<div class="media well tab-pane fade" id="frame-help">
-					 <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src="http://lorempixel.com/64/64/" class="media-object"></a>
-					<div class="media-body">
-						<h4>Polsaker</h4>
-						Hello world
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row" id="chatbox">
-		<div class="col-sm-11">
-			<input type="text" class="form-control" id="chattext" placeholder="Enter your text here">
-		</div>
-		<div class="col-sm-1">
-			<button type="button" class="btn btn-default">Send</button>
-		</div>
-	</div>
-</div>
+	<div class="container" id="main">
+        <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                     
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                         <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button> <a class="navbar-brand" href="/">Hira</a>
+                </div>
+                
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                             <a href="#" class="dropdown-toggle glyphicon glyphicon-menu-hamburger" data-toggle="dropdown"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Join channel</a></li>
+                                <li><a href="#">Send private message</a></li>
+                                <li><a href="#">Settings</a></li>
+                                
+                                <li class="divider"></li>
+                                
+                                <li><a href="#">FAQ</a></li>
+                                
+                                <li class="divider"></li>
+                                
+                                <li><a href="#">About</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div> 
+                        <button type="submit" class="btn btn-default">
+                            Search
+                        </button>
+                    </form>
+                </div>
+        </nav>
+        
+        
+        <!-- CONTENT -->
+        
+        
+        <div class="row">
+            <div class="col-md-2">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">Channels</a>
+                    <!--Channels list-->
+                    <a href="#frame-test" class="list-group-item" data-toggle="tab">
+                        <span class="badge">14</span>#test
+                    </a>
+                    <a href="#frame-help" class="list-group-item" data-toggle="tab">
+                        <span class="badge">0</span>#help
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-10">
+            <!--Messages box-->
+                <div class="tab-content">
+                    <div class="media well tab-pane fade in active" id="frame-test">
+                         <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src="http://lorempixel.com/64/64/" class="media-object"></a>
+                        <div class="media-body">
+                            <h4>CoolNick</h4>
+                            Test message 124
+                        </div>
+                    </div>
+                    <div class="media well tab-pane fade" id="frame-help">
+                         <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src="http://lorempixel.com/64/64/" class="media-object"></a>
+                        <div class="media-body">
+                            <h4>Polsaker</h4>
+                            Hello world
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="chatbox">
+            <div class="col-sm-11">
+                <textarea class="textarea form-control" id="chattext" placeholder="Enter text ..." style="width: calc(100%-40px); height: 50px"></textarea>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" id="chatSend" class="btn btn-default">Send</button>
+            </div>
+        </div>
+    </div>
 	
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/scripts.js"></script>
+    
+    <script src="js/handlebars.runtime.min.js"></script>
+    <script src="js/bootstrap3-wysihtml5.all.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+	        $('#chattext').wysihtml5({toolbar: {"font-styles": false, "lists": false, "link": false, "image": false, "blockquote": false, "size":'xs', "fa": true}});
+        });
+    </script>
   </body>
 </html>
