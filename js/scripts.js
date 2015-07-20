@@ -106,7 +106,6 @@ if (!String.prototype.format) {
     "/": '&#x2F;'
   };
 
-<<<<<<< HEAD
 window.activate = function(el) {    
     var current = document.querySelector('.active');
     if (current) {
@@ -114,10 +113,8 @@ window.activate = function(el) {
     }
     el.classList.add('active');
 }
-=======
-  function escapeHtml(string) {
+function escapeHtml(string) {
     return String(string).replace(/[&<>"'\/]/g, function (s) {
       return entityMap[s];
     });
-  }
->>>>>>> fa9f910768cf450460ffd49e931714bccc73113c
+}
