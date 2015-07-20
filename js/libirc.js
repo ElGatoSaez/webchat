@@ -75,7 +75,7 @@ function Irc (host, port, nick, password) {
                 var channel = ircdata['params'][0].replace("#", "");
                 var message = ircdata['params'][1];
                 var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
-                              <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, message);
+                              <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, escapeHtml(message));
                 $("#frame-"+channel).append(parsed);
          }else if(ircdata['verb'] == 'JOIN'){//Join
                 var nick = ircdata['source'].split("!")[0];
