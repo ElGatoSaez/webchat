@@ -30,7 +30,7 @@ function connect(data){
     $('#remember').attr('disabled', true);
     $('#btnSubmit').button('loading');
     
-    var irc = new Irc("omega.hira.io", 8765, data["nick"], data["password"]);
+    window.irc = new Irc("omega.hira.io", 8765, data["nick"], data["password"]);
 }
 
 $(document).ready(function(){
@@ -50,7 +50,7 @@ function changediv(){
             e.preventDefault();
             var data = $('#join_form').serializeObject();
             console.debug(data);
-            irc.lsend("JOIN "+data["group_name"]);
+            window.irc.connection.lsend("JOIN #"+data["group_name"]);
         });
     });
 }
