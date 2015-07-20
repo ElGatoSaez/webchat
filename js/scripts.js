@@ -45,7 +45,14 @@ $(document).ready(function(){
     });
 });
 function changediv(){
-    $("#main").load("chat.html #main");
+    $("#main").load("chat.html #main", function( response, status, xhr ) {
+        $('#join_form').on('submit', function(e) {
+            e.preventDefault();
+            var data = $('#join_form').serializeObject();
+            console.debug(data);
+            irc.lsend("JOIN "+data["group_name"]);
+        });
+    });
 }
 
 function sendMessage(message){
@@ -60,11 +67,4 @@ $(function() {
             return false;
     });
 });
-$(function() {
-        $('#join_form').on('submit', function(e) {
-            e.preventDefault();
-            var data = $('#join_form').serializeObject();
-            console.debug(data);
-            irc.lsend("JOIN "+data["group_name"]);
-        });
-});
+
