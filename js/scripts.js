@@ -64,6 +64,9 @@ function changediv(){
              sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
         });
     });
+    $(document).ready(function() {
+        document.title = 'Hira';
+    });
 }
 
 function sendMessage(message){
