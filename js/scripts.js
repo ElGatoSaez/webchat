@@ -51,6 +51,7 @@ function changediv(){
             var data = $('#join_form').serializeObject();
             console.debug(data);
             window.irc.connection.lsend("JOIN #"+data["group_name"]);
+            $('#joinGroup').modal('toggle');
         });
     });
 }
