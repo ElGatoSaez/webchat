@@ -68,6 +68,9 @@ function changediv(){
         $(document).bind('keydown', 'alt+j', function() {
             $('#joinGroup').modal('toggle');
         });
+        $('#joinGroup').on('shown.bs.modal', function () {
+            $('#groupname').focus();
+        })
     });
 }
 
