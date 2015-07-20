@@ -1,243 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>Hira</title>
-
-	<meta name="author" content="Hira.io">
-
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap3-wysihtml5.min.css">
-    <link href="css/style.css" rel="stylesheet">
-
-  </head>
-  <body>
-
-	<div class="container" id="main">
-	  <nav class="navbar navbar-default">
-		    <div class="navbar-header">
-			   
-			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-			  </button> <a class="navbar-brand" href="/">Hira</a>
-		    </div>
-		    
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			  <ul class="nav navbar-nav">
-				<li class="dropdown">
-				     <a href="#" class="dropdown-toggle glyphicon glyphicon-menu-hamburger" data-toggle="dropdown"></strong></a>
-				    <ul class="dropdown-menu">
-					  <li><a href="#" data-toggle="modal" data-target="#joinGroup">Join a group</a></li>
-					  <li><a href="#">Send private message</a></li>
-					  <li><a href="#">Settings</a></li>
-					  
-					  <li class="divider"></li>
-					  
-					  <li><a href="#">FAQ</a></li>
-					  
-					  <li class="divider"></li>
-					  
-					  <li><a href="#">About</a></li>
-				    </ul>
-				</li>
-			  </ul>
-			  <form class="navbar-form navbar-left" role="search">
-				<div class="form-group">
-				    <input type="text" class="form-control">
-				</div> 
-				<button type="submit" class="btn btn-default">
-				    Search
-				</button>
-			  </form>
-		    </div>
-	  </nav>
-	  
-	  
-	  <!-- CONTENT -->
-	  
-	  
-	  <div class="row">
-		<div class="col-md-2">
-		    <div class="list-group">
-			  <a href="#" class="list-group-item active">Channels</a>
-			  <!--Channels list-->
-			  <a href="#frame-test" class="list-group-item" data-toggle="tab">
-				<span class="badge">14</span>#test
-			  </a>
-			  <a href="#frame-help" class="list-group-item" data-toggle="tab">
-				<span class="badge">0</span>#help
-			  </a>
-		    </div>
-		</div>
-		<div class="col-md-10">
-		<!--Messages box-->
-		    <div class="tab-content">
-			  <div class="media well tab-pane fade in active" id="frame-test">
-				 <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src="http://lorempixel.com/64/64/" class="media-object"></a>
-				<div class="media-body">
-				    <h4>CoolNick</h4>
-				    Test message 124
-				</div>
-			  </div>
-			  <div class="media well tab-pane fade" id="frame-help">
-				 <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src="http://lorempixel.com/64/64/" class="media-object"></a>
-				<div class="media-body">
-				    <h4>Polsaker</h4>
-				    Hello world
-				</div>
-			  </div>
-		    </div>
-		</div>
-	  </div>
-	  <div class="row" id="chatbox">
-		<div class="col-sm-11">
-		    <div class="form-control" id="chattext" placeholder="Enter text ..." style="overflow: auto; height: 60px; font-size: 14px; line-height: 18px;"></textarea>
-		</div>
-		<div class="col-sm-1">
-		    <button type="button" id="chatSend" class="btn btn-default">Send</button>
-		</div>
-	  </div>
-	  <nav class="navbar navbar-default">
-	    <div class="navbar-header">
-		   
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-		 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-		  </button> <a class="navbar-brand" href="/">Hira</a>
-	    </div>
-	    
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		  <ul class="nav navbar-nav">
-		<li class="dropdown">
-		     <a href="#" class="dropdown-toggle glyphicon glyphicon-menu-hamburger" data-toggle="dropdown"></strong></a>
-		    <ul class="dropdown-menu">
-			  <li><a href="#" data-toggle="modal" data-target="#joinGroup">Join group</a></li>
-			  <li><a href="#">Send private message</a></li>
-			  <li><a href="#">Settings</a></li>
-			  
-			  <li class="divider"></li>
-			  
-			  <li><a href="#">FAQ</a></li>
-			  
-			  <li class="divider"></li>
-			  
-			  <li><a href="#">About</a></li>
-		    </ul>
-		</li>
-		  </ul>
-		  <form class="navbar-form navbar-left" role="search">
-		<div class="form-group">
-		    <input type="text" class="form-control">
-		</div> 
-		<button type="submit" class="btn btn-default">
-		    Search
-		</button>
-		  </form>
-	    </div>
-	  </nav>
-	  
-	  
-	  <!-- CONTENT -->
-	  
-	  
-	  <div class="row">
-	<div class="col-md-2">
-	    <div class="list-group">
-		  <a href="#" class="list-group-item active">Channels</a>
-		  <!--Channels list-->
-		  <a href="#frame-test" class="list-group-item" data-toggle="tab">
-		<span class="badge">14</span>#test
-		  </a>
-		  <a href="#frame-help" class="list-group-item" data-toggle="tab">
-		<span class="badge">0</span>#help
-		  </a>
-	    </div>
-	</div>
-	<div class="col-md-10">
-	<!--Messages box-->
-	    <div class="tab-content">
-		  <div class="media well tab-pane fade in active" id="frame-test">
-		 <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src="http://lorempixel.com/64/64/" class="media-object"></a>
-		<div class="media-body">
-		    <h4>CoolNick</h4>
-		    Test message 124
-		</div>
-		  </div>
-		  <div class="media well tab-pane fade" id="frame-help">
-		 <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src="http://lorempixel.com/64/64/" class="media-object"></a>
-		<div class="media-body">
-		    <h4>Polsaker</h4>
-		    Hello world
-		</div>
-		  </div>
-	    </div>
-	</div>
-	  </div>
-	  <div class="row" id="chatbox">
-	<div class="col-sm-11">
-	    <textarea class="textarea form-control" id="chattext" placeholder="Enter text ..." style="width: calc(100%-40px); height: 50px"></textarea>
-	</div>
-	<div class="col-sm-1">
-	    <button type="button" id="chatSend" class="btn btn-default">Send</button>
-	</div>
-	  </div>
-</div>
-<!-- Join group modal -->
-<div class="modal fade" id="joinGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-	<div class="modal-header">
-	  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <h4 class="modal-title" id="myModalLabel">Join a group</h4>
-	</div>
-	<form class="form-horizontal" role="form" id="join_form">
-	<div class="modal-body">
-		<label for="groupname">Group name:</label>
-		<input type="text" class="form-control" id="groupname" maxlength="32" name="group_name">
-	</div>
-	<div class="modal-footer">
-	  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	  <button type="submit" class="btn btn-primary">Join</button>
-	</div>
-	</form>
-    </div>
-  </div>
-    </div>
-	
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/scripts.js"></script>
-    
-    <script src="js/handlebars.runtime.min.js"></script>
-    <script src="js/bootstrap3-wysihtml5.all.min.js"></script>
-
-    <script type="text/javascript">
-	  function handleEnter(evt) {
-		if (evt.keyCode == 13 && evt.shiftKey) {
-		    if (evt.type == "keypress") {
-			  pasteIntoInput(this, "\n");
-		    }
-		    evt.preventDefault();
-		}
-	  }
-	  $(document).ready(function(){
-		  $('#chattext').wysihtml5({toolbar: {"font-styles": false, "lists": false, "link": false, "image": false, "blockquote": false, "size":'xs'}});
-		$('#chattext').keydown(function (event) {
-		    if (event.keyCode == 13 && !event.shiftKey) {
-			  sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
-			  event.preventDefault();
-		    }
-		});
-		$('#btnSubmit').on('click', function() {
-		     sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
-		});
-		
-	  });
-	  $(document).ready(function(){
-		  $('#chattext').wysihtml5({toolbar: {"font-styles": false, "lists": false, "link": false, "image": false, "blockquote": false, "size":'xs', "fa": true}});
-	  });
-    </script>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hira</title>
+        <meta name="author" content="Hira.io">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap3-wysihtml5.min.css">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container" id="main">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </button> <a class="navbar-brand" href="/">Hira</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-menu-hamburger" data-toggle="dropdown"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" data-toggle="modal" data-target="#joinGroup">Join a group</a></li>
+                                <li><a href="#">Send private message</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">About</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-default">
+                        Search
+                        </button>
+                    </form>
+                </div>
+            </nav>
+            <!-- CONTENT -->
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="list-group" id="group_list">
+                        <a href="#" class="list-group-item active">Groups</a>
+                        <!--Channels list-->
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <!--Messages box-->
+                    <div class="tab-content" id="message_box">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="chatbox">
+                <div class="col-sm-11">
+                    <textarea class="textarea form-control" id="chattext" placeholder="Enter text ..." style="width: calc(100%-40px); height: 50px"></textarea>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" id="chatSend" class="btn btn-default">Send</button>
+                </div>
+            </div>
+            <!-- Join group modal -->
+            <div class="modal fade" id="joinGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Join a group</h4>
+                        </div>
+                        <form class="form-horizontal" role="form" id="join_form">
+                            <div class="modal-body">
+                                <label for="groupname">Group name:</label>
+                                <input type="text" class="form-control" id="groupname" maxlength="32" name="group_name">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Join</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/handlebars.runtime.min.js"></script>
+        <script src="js/bootstrap3-wysihtml5.all.min.js"></script>
+        <script type="text/javascript">
+            function handleEnter(evt) {
+                if (evt.keyCode == 13 && evt.shiftKey) {
+                    if (evt.type == "keypress") {
+                        pasteIntoInput(this, "\n");
+                    }
+                    evt.preventDefault();
+                }
+            }
+            $(document).ready(function(){
+                  $('#chattext').wysihtml5({toolbar: {"font-styles": false, "lists": false, "link": false, "image": false, "blockquote": false, "size":'xs'}});
+                $('#chattext').keydown(function (event) {
+                    if (event.keyCode == 13 && !event.shiftKey) {
+                        sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
+                        event.preventDefault();
+                    }
+                });
+                $('#btnSubmit').on('click', function() {
+                     sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
+                });
+                
+            });
+            $(document).ready(function(){
+                  $('#chattext').wysihtml5({toolbar: {"font-styles": false, "lists": false, "link": false, "image": false, "blockquote": false, "size":'xs', "fa": true}});
+            });
+        </script>
+    </body>
 </html>
