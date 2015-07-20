@@ -95,9 +95,8 @@ function sendMessage(message){
     if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
 
     $("#frame-"+type+"-"+clone.html()).append(parsed);
-    message = $("<div/>").html(message).text();
     if(bottom){ $('#message_box').scrollTop($('#message_box').prop('scrollHeight'));}
-    
+    console.log(message)
     message = message.replace(/<span class="wysiwyg-color-white">/g, '\00300');
     message = message.replace(/<span class="wysiwyg-color-black">/g, '\00301');
     message = message.replace(/<span class="wysiwyg-color-navy">/g, '\00302');
@@ -121,6 +120,8 @@ function sendMessage(message){
     message = message.replace(/&nbsp;/g, ' ');
     message = message.replace(/<p>|<\/p>/g, '');
     message = message.split('<br>')[0] // TODO: send the other messages
+    message = $("<div/>").html(message).text();
+
     window.irc.connection.lsend("PRIVMSG "+ ((type == "user")?"":"#") + clone.html() + ' :' + message);
     // TODO: Parse line breaks
 }
