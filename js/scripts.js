@@ -53,12 +53,22 @@ function changediv(){
             window.irc.connection.lsend("JOIN #"+data["group_name"]);
             $('#joinGroup').modal('toggle');
         });
+        $('#chattext').wysihtml5({toolbar: {"font-styles": false, "lists": false, "link": false, "image": false, "blockquote": false, "size":'xs'}});
+        $('#chattext').keydown(function (event) {
+            if (event.keyCode == 13 && !event.shiftKey) {
+                sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
+                event.preventDefault();
+            }
+        });
+        $('#btnSubmit').on('click', function() {
+             sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
+        });
     });
 }
 
 function sendMessage(message){
     $('#chattext').data("wysihtml5").el.context.innerHTML = "";
-    
+    message = message.repl
     // TODO: Parse line breaks, bold, etc
 }
 

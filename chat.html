@@ -59,8 +59,7 @@
             </div>
             <div class="row" id="chatbox">
                 <div class="col-sm-11">
-                    <div class="form-control" id="chattext" placeholder="Enter text ..." style="overflow: auto; height: 60px; font-size: 14px; line-height: 18px;"></textarea>
-                    </div>
+                    <div class="form-control" id="chattext" placeholder="Enter text ..." style="overflow: auto; height: 60px; font-size: 14px; line-height: 18px;"></div>
                     <div class="col-sm-1">
                         <button type="button" id="chatSend" class="btn btn-default">Send</button>
                     </div>
@@ -103,17 +102,7 @@
                 }
             }
             $(document).ready(function(){
-             $('#chattext').wysihtml5({toolbar: {"font-styles": false, "lists": false, "link": false, "image": false, "blockquote": false, "size":'xs'}});
-                $('#chattext').keydown(function (event) {
-                    if (event.keyCode == 13 && !event.shiftKey) {
-                        sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
-                        event.preventDefault();
-                    }
-                });
-                $('#btnSubmit').on('click', function() {
-                     sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
-                });
-                
+
             });
         </script>
     </body>
