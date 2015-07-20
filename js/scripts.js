@@ -46,6 +46,7 @@ $(document).ready(function(){
 });
 function changediv(){
     $("#main").load("chat.html #main", function( response, status, xhr ) {
+        document.title = 'Hira';
         $('#join_form').on('submit', function(e) {
             e.preventDefault();
             var data = $('#join_form').serializeObject();
@@ -64,9 +65,6 @@ function changediv(){
              sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
         });
     });
-    $(document).ready(function() {
-        document.title = 'Hira';
-    });
 }
 
 function sendMessage(message){
@@ -83,7 +81,7 @@ function sendMessage(message){
     message = message.replace(/<p>|<\/p>/g, '')
     message = message.split('<br>')[0] // TODO: send the other messages
     window.irc.connection.lsend("PRIVMSG #" + clone.html() + ' :' + message);
-    // TODO: Parse line breaks, bold, etc
+    // TODO: Parse line breaks
 }
 
 $(function() {
