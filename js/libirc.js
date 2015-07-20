@@ -75,7 +75,7 @@ function Irc (host, port, nick, password) {
                 var channel = ircdata['params'][0]
 
                 //Check if it's a user or a channel!
-               if(typeof variable_here !== 'undefined'){
+               if(channel.startsWith("#")){
                   var type = "channel";
                   channel = channel.replace("#", "");
                 } else {
