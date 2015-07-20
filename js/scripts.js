@@ -64,7 +64,7 @@ function changediv(){
         $('#btnSubmit').on('click', function() {
              sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
         });
-        
+
         $(document).bind('keydown', 'alt+j', function() {
             $('#joinGroup').modal('toggle');
         });
@@ -83,6 +83,7 @@ function sendMessage(message){
     var t = $('#message_box')[0].scrollHeight - $('#message_box').scrollTop();
     if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
     $("#frame-"+clone.html()).append(parsed);
+    message = $("<div/>").html(message).text();
     if(bottom){ $('#message_box').scrollTop($('#message_box').prop('scrollHeight'));}
     message = message.replace(/<b>|<\/b>/g, '\002')
     message = message.replace(/<i>|<\/i>/g, '\u001d')
@@ -129,6 +130,7 @@ window.activate = function(el) {
     $('#chatStuffContainer').removeClass('invisible');
 }
 function escapeHtml(string) {
+
     return String(string).replace(/[&<>"'\/]/g, function (s) {
       return entityMap[s];
     });
