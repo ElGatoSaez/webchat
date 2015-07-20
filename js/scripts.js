@@ -64,6 +64,10 @@ function changediv(){
         $('#btnSubmit').on('click', function() {
              sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
         });
+        
+        $(document).bind('keydown', 'alt+j', function() {
+            $('#joinGroup').modal('toggle');
+        });
     });
 }
 
@@ -116,6 +120,7 @@ window.activate = function(el) {
         current.classList.remove('active');
     }
     el.classList.add('active');
+    $('#chatStuffContainer').removeClass('invisible');
 }
 function escapeHtml(string) {
     return String(string).replace(/[&<>"'\/]/g, function (s) {
