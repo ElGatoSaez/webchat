@@ -73,12 +73,15 @@ function Irc (host, port, nick, password) {
          }else if(ircdata['verb'] == 'PRIVMSG'){//Message!
                 var nick = ircdata['source'].split("!")[0];
                 var channel = ircdata['params'][0]
-
+                var message = ircdata['params'][1];
                 //Check if it's a user or a channel!
                if(channel.startsWith("#")){
                   var type = "channel";
                   channel = channel.replace("#", "");
                 } else {
+                  if(message.startsWith("\u0001")) { //We hate the CTCPs!
+                    return;
+                  }
                   var type = "user";
                   if($("#frame-user-" + channel).length == 0) {
                     //it doesn't exist, create it!
@@ -86,7 +89,6 @@ function Irc (host, port, nick, password) {
                     $("#message_box").append('<div class="media well tab-pane fade" id="frame-user-{0}"></div>'.format(nick));
                   }
                 }
-                var message = ircdata['params'][1];
 
                 var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
                               <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, parseColors(escapeHtml(message)));
