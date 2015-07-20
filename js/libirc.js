@@ -6,7 +6,7 @@ function Irc (host, port, nick, password) {
     this.connection.password = password;
     this.connection.realname = "Hira's WebChat";
     this.connection.user = "webchat";
-    
+
     this.connection.connected = false;
     this.connection.totallyconnected = false;
     this.connection.alreadyerrored = false;
@@ -21,12 +21,12 @@ function Irc (host, port, nick, password) {
     this.connection.onerror = function (error) {
       console.log('[ERROR] ' + error);
     };
-    
+
     this.connection.lsend = function(data) { // log what we send
         console.debug(data)
         this.send(data);
     }
-    
+
     // Log messages from the server
     this.connection.onmessage = function (e) {
         if(e.data == 'CONNECTED'){
@@ -36,7 +36,7 @@ function Irc (host, port, nick, password) {
         }
         ircdata = JSON.parse(e.data)
         console.debug(e.data);
-        
+
         // IRC parsing and stuff!
         if(ircdata['verb'] == "CAP" && ircdata['params'][1] == "ACK"){ // SASL ACK!
             this.lsend("AUTHENTICATE PLAIN");

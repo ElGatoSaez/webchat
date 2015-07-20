@@ -29,7 +29,7 @@ function connect(data){
     $('#password').attr('disabled', true);
     $('#remember').attr('disabled', true);
     $('#btnSubmit').button('loading');
-    
+
     window.irc = new Irc("omega.hira.io", 8765, data["nick"], data["password"]);
 }
 
@@ -39,7 +39,7 @@ $(document).ready(function(){
             e.preventDefault();
             var data = $('#login_form').serializeObject();
             console.debug(data);
-            
+
             connect(data);
         });
     });
@@ -70,6 +70,9 @@ function sendMessage(message){
     var clone = $('#group_list .active').clone() // TODO optimize
     clone.find('.badge').remove()
     $('#chattext').data("wysihtml5").el.context.innerHTML = "";
+    var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
+                  <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(window.irc.connection.nick, message);
+    $("#frame-"+clone.html()).append(parsed);
     message = message.replace(/<b>|<\/b>/g, '\002')
     message = message.replace(/<i>|<\/i>/g, '\u001d')
     message = message.replace(/<u>|<\/u>/g, '\u001f')
@@ -89,7 +92,7 @@ $(function() {
 if (!String.prototype.format) {
   String.prototype.format = function() {
     var args = arguments;
-    return this.replace(/{(\d+)}/g, function(match, number) { 
+    return this.replace(/{(\d+)}/g, function(match, number) {
       return typeof args[number] != 'undefined'
         ? args[number]
         : match
@@ -106,7 +109,7 @@ if (!String.prototype.format) {
     "/": '&#x2F;'
   };
 
-window.activate = function(el) {    
+window.activate = function(el) {
     var current = document.querySelector('.active');
     if (current) {
         current.classList.remove('active');
