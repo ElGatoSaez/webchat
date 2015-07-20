@@ -44,25 +44,21 @@
                 </div>
             </nav>
             <!-- CONTENT -->
-            <div class="row">
+            <div class="row" id="colRow">
                 <div class="col-md-2">
                     <div class="list-group" id="group_list">
                         <a href="#" class="list-group-item">Groups</a>
                         <!--Channels list-->
                     </div>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-10" id="anotherColRow">
                     <!--Messages box-->
                     <div class="tab-content" id="message_box">
                     </div>
-                </div>
-            </div>
-            <div class="row" id="chatbox">
-                <div class="col-sm-11 invisible" id="chatStuffContainer">
-                    <div class="form-control" id="chattext" placeholder="Enter text ..." style="overflow: auto; height: 60px; font-size: 14px; line-height: 18px;"></div>
-                    <div class="col-sm-1">
-                        <button type="button" id="chatSend" class="btn btn-default">Send</button>
+                    <div id="chatStuffContainer" class="invisible">
+                        <div class="form-control" id="chattext" placeholder="Enter text ..." style="overflow: auto; height: 60px; font-size: 14px; line-height: 18px;"></div>
                     </div>
+
                 </div>
             </div>
             <!-- Join group modal -->

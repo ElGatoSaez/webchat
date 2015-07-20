@@ -80,7 +80,10 @@ function sendMessage(message){
     $('#chattext').data("wysihtml5").el.context.innerHTML = "";
     var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
                   <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(window.irc.connection.nick, message);
+    var t = $('#message_box')[0].scrollHeight - $('#message_box').scrollTop();
+    if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
     $("#frame-"+clone.html()).append(parsed);
+    if(bottom){ $('#message_box').scrollTop($('#message_box').prop('scrollHeight'));}
     message = message.replace(/<b>|<\/b>/g, '\002')
     message = message.replace(/<i>|<\/i>/g, '\u001d')
     message = message.replace(/<u>|<\/u>/g, '\u001f')

@@ -18,6 +18,10 @@ html, body {
 	height: 60px;
 }
 
+#colRow{height: 90%;}
+#anotherColRow{height: 99%;}
+#message_box{height: 75%; overflow:auto; margin-bottom: 10px;}
+
 #chatSend{
     height: 40px;
     position: fixed;
