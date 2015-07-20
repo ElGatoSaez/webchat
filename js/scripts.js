@@ -67,8 +67,16 @@ function changediv(){
 }
 
 function sendMessage(message){
+    var clone = $('#group_list .active').clone() // TODO optimize
+    clone.find('.badge').remove()
     $('#chattext').data("wysihtml5").el.context.innerHTML = "";
-    message = message.repl
+    message = message.replace(/<b>|<\/b>/g, '\002')
+    message = message.replace(/<i>|<\/i>/g, '\u001d')
+    message = message.replace(/<u>|<\/u>/g, '\u001f')
+    message = message.replace(/&nbsp;/g, ' ')
+    message = message.replace(/<p>|<\/p>/g, '')
+    message = message.split('<br>')[0] // TODO: send the other messages
+    window.irc.connection.lsend("PRIVMSG #" + clone.html() + ' :' + message);
     // TODO: Parse line breaks, bold, etc
 }
 
@@ -90,3 +98,10 @@ if (!String.prototype.format) {
   };
 }
 
+window.activate = function(el) {    
+    var current = document.querySelector('.active');
+    if (current) {
+        current.classList.remove('active');
+    }
+    el.classList.add('active');
+}

@@ -82,7 +82,7 @@ function Irc (host, port, nick, password) {
                 var channel = ircdata['params'][0];
                 channel = channel.replace("#", "")
                 if(nick == this.nick){
-                    $("#group_list").append('<a href="#frame-{0}" class="list-group-item" data-toggle="tab"><span class="badge">0</span>{0}</a>'.format(channel));
+                    $("#group_list").append('<a href="#frame-{0}" onclick="activate(this)" class="list-group-item" data-toggle="tab"><span class="badge">0</span>{0}</a>'.format(channel));
                     $("#message_box").append('<div class="media well tab-pane fade" id="frame-{0}"></div>'.format(channel));
                     this.channelcount++;
                 }
