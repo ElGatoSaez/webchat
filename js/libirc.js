@@ -72,22 +72,35 @@ function Irc (host, port, nick, password) {
             }
          }else if(ircdata['verb'] == 'PRIVMSG'){//Message!
                 var nick = ircdata['source'].split("!")[0];
-                var channel = ircdata['params'][0].replace("#", "");
+                var channel = ircdata['params'][0]
+
+                //Check if it's a user or a channel!
+               if(typeof variable_here !== 'undefined'){
+                  var type = "channel";
+                  channel = channel.replace("#", "");
+                } else {
+                  var type = "user";
+                  if($("#frame-user-" + channel).length == 0) {
+                    //it doesn't exist, create it!
+                    $("#group_list").append('<a href="#frame-user-{0}" onclick="activate(this)" class="list-group-item" data-toggle="tab"><span class="badge">0</span>{0}</a>'.format(nick));
+                    $("#message_box").append('<div class="media well tab-pane fade" id="frame-user-{0}"></div>'.format(nick));
+                  }
+                }
                 var message = ircdata['params'][1];
-                
+
                 var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
                               <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, parseColors(escapeHtml(message)));
                 var t = $('#message_box')[0].scrollHeight - $('#message_box').scrollTop();
                 if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
-                $("#frame-"+channel).append(parsed);
+                $("#frame-"+type+"-"+((type=="user")?nick:channel)).append(parsed);
                 if(bottom){ $('#message_box').scrollTop($('#message_box').prop('scrollHeight'));}
          }else if(ircdata['verb'] == 'JOIN'){//Join
                 var nick = ircdata['source'].split("!")[0];
                 var channel = ircdata['params'][0];
                 channel = channel.replace("#", "")
                 if(nick == this.nick){
-                    $("#group_list").append('<a href="#frame-{0}" onclick="activate(this)" class="list-group-item" data-toggle="tab"><span class="badge">0</span>{0}</a>'.format(channel));
-                    $("#message_box").append('<div class="media well tab-pane fade" id="frame-{0}"></div>'.format(channel));
+                    $("#group_list").append('<a href="#frame-channel-{0}" onclick="activate(this)" class="list-group-item" data-toggle="tab"><span class="badge">0</span>{0}</a>'.format(channel));
+                    $("#message_box").append('<div class="media well tab-pane fade" id="frame-channel-{0}"></div>'.format(channel));
                     this.channelcount++;
                 }
          }

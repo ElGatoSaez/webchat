@@ -71,18 +71,27 @@ function changediv(){
         $('#joinGroup').on('shown.bs.modal', function () {
             $('#groupname').focus();
         })
+        if (typeof String.prototype.startsWith != 'function') {
+          String.prototype.startsWith = function (str){
+            return this.slice(0, str.length) == str;
+          };
+        }
     });
 }
 
 function sendMessage(message){
     var clone = $('#group_list .active').clone() // TODO optimize
     clone.find('.badge').remove()
+    var type = clone.attr('href').split("-")[1];
     $('#chattext').data("wysihtml5").el.context.innerHTML = "";
+    //Put it on our window!
     var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
                   <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(window.irc.connection.nick, message);
+
     var t = $('#message_box')[0].scrollHeight - $('#message_box').scrollTop();
     if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
-    $("#frame-"+clone.html()).append(parsed);
+
+    $("#frame-"+type+"-"+clone.html()).append(parsed);
     message = $("<div/>").html(message).text();
     if(bottom){ $('#message_box').scrollTop($('#message_box').prop('scrollHeight'));}
     message = message.replace(/<b>|<\/b>/g, '\002')
@@ -91,7 +100,7 @@ function sendMessage(message){
     message = message.replace(/&nbsp;/g, ' ')
     message = message.replace(/<p>|<\/p>/g, '')
     message = message.split('<br>')[0] // TODO: send the other messages
-    window.irc.connection.lsend("PRIVMSG #" + clone.html() + ' :' + message);
+    window.irc.connection.lsend("PRIVMSG "+ ((type == "user")?"":"#") + clone.html() + ' :' + message);
     // TODO: Parse line breaks
 }
 
