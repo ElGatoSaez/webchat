@@ -88,8 +88,9 @@ function sendMessage(message){
     var type = clone.attr('href').split("-")[1];
     $('#chattext').data("wysihtml5").el.context.innerHTML = "";
     //Put it on our window!
+    
     var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
-                  <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(window.irc.connection.nick, message);
+                  <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(window.irc.connection.nick, Autolinker.link(message, {truncate: 25}));
 
     var t = $('#message_box')[0].scrollHeight - $('#message_box').scrollTop();
     if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
@@ -162,7 +163,7 @@ window.activate = function(el) {
 }
 function escapeHtml(string) {
 
-    return String(string).replace(/[&<>"'\/]/g, function (s) {
+    return String(string).replace(/[&<>"']/g, function (s) {
       return entityMap[s];
     });
 }
@@ -191,5 +192,6 @@ function parseColors(message) {
             }
         }
     }
+    message = message.replace(/\u000f/g, ''); // TODO: Parse those "end of everything" codes.
     return message;
 }

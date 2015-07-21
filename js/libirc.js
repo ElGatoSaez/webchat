@@ -89,9 +89,8 @@ function Irc (host, port, nick, password) {
                     $("#message_box").append('<div class="media well tab-pane fade" id="frame-user-{0}"></div>'.format(nick));
                   }
                 }
-
                 var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
-                              <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, parseColors(escapeHtml(message)));
+                              <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, Autolinker.link( parseColors(escapeHtml(message)), {truncate: 25}  ));
                 var t = $('#message_box')[0].scrollHeight - $('#message_box').scrollTop();
                 if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
                 $("#frame-"+type+"-"+((type=="user")?nick:channel)).append(parsed);
