@@ -85,9 +85,17 @@ function Irc (host, port, nick, password) {
                   var type = "user";
                   if($("#frame-user-" + channel).length == 0) {
                     //it doesn't exist, create it!
-                    $("#group_list").append('<a href="#frame-user-{0}" onclick="activate(this)" class="list-group-item" data-toggle="tab"><span class="badge">0</span>{0}</a>'.format(nick));
+                    $("#group_list").append('<a href="#frame-user-{0}" onclick="activate(this); $(this).find(\'.badge\').hide(); $(this).find(\'.badge\').html(\'0\')" class="list-group-item" data-toggle="tab"><span class="badge" id="counter-user-{0}">0</span>{0}</a>'.format(nick));
                     $("#message_box").append('<div class="media well tab-pane fade" id="frame-user-{0}"></div>'.format(nick));
                   }
+                }
+                var active = $('#group_list .active').clone() // TODO optimize
+                active.find('.badge').remove()
+                if(channel != active){
+                  var scount = $("#counter-"+type+"-"+channel).html();
+                  var count = parseInt(scount);
+                  $("#counter-"+type+"-"+channel).html(count+1);
+                  $("#counter-"+type+"-"+channel).show();
                 }
                 var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
                               <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, Autolinker.link( parseColors(escapeHtml(message)), {truncate: 25}  ));
@@ -100,7 +108,7 @@ function Irc (host, port, nick, password) {
                 var channel = ircdata['params'][0];
                 channel = channel.replace("#", "")
                 if(nick == this.nick){
-                    $("#group_list").append('<a href="#frame-channel-{0}" onclick="activate(this)" class="list-group-item" data-toggle="tab"><span class="badge">0</span>{0}</a>'.format(channel));
+                    $("#group_list").append('<a href="#frame-channel-{0}" onclick="activate(this); $(this).find(\'.badge\').hide(); $(this).find(\'.badge\').html(\'0\')" class="list-group-item" data-toggle="tab"><span class="badge" id="counter-channel-{0}">0</span>{0}</a>'.format(channel));
                     $("#message_box").append('<div class="media well tab-pane fade" id="frame-channel-{0}"></div>'.format(channel));
                     this.channelcount++;
                 }
