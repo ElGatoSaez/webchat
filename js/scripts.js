@@ -55,9 +55,9 @@ function changediv(){
             $('#joinGroup').modal('toggle');
         });
         $('#chattext').wysihtml5({toolbar: {"font-styles": false, "lists": false, "link": false, "image": false, "blockquote": false, "size":'xs'}});
-        
+
         $('#chatStuffContainer .wysihtml5-toolbar .btn-group').append('<a class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-font"></span><span class="current-font">Black</span><b class="caret"></b></a><ul class="dropdown-menu"><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="grey" tabindex="-1" href="javascript:;" unselectable="on"><span class="wysiwyg-color-gray">Grey</span></a></li><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="black" tabindex="-1" href="javascript:;" unselectable="on">Black</a></li><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue" tabindex="-1" href="javascript:;" unselectable="on"><span class="wysiwyg-color-blue">Blue</span></a></li><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green" tabindex="-1" href="javascript:;" unselectable="on"><span class="wysiwyg-color-gren">Green</span></a></li><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red" tabindex="-1" href="javascript:;" unselectable="on"><span class="wysiwyg-color-red">Red</span></a></li><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="orange" tabindex="-1" href="javascript:;" unselectable="on"><span class="wysiwyg-color-orange">Orange</span></a></li><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="yellow" tabindex="-1" href="javascript:;" unselectable="on"><span class="wysiwyg-color-yellow">Yellow</span></a></li><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="cyan" tabindex="-1" href="javascript:;" unselectable="on"><span class="wysiwyg-color-cyan">Cyan</span></a></li><li><a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="pink" tabindex="-1" href="javascript:;" unselectable="on"><span class="wysiwyg-color-pink">Pink</span></a></li></ul></li>')
-        
+
         $('#chattext').keydown(function (event) {
             if (event.keyCode == 13 && !event.shiftKey) {
                 sendMessage($('#chattext').data("wysihtml5").el.context.innerHTML);
@@ -88,7 +88,7 @@ function sendMessage(message){
     var type = clone.attr('href').split("-")[1];
     $('#chattext').data("wysihtml5").el.context.innerHTML = "";
     //Put it on our window!
-    
+
     var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
                   <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(window.irc.connection.nick, Autolinker.link(message, {truncate: 25}));
 
@@ -154,7 +154,8 @@ if (!String.prototype.format) {
   };
 
 window.activate = function(el) {
-    var current = document.querySelector('.active');
+    var current = $("#group_list").find('.active').get(0);
+    $(el).tab("show")
     if (current) {
         current.classList.remove('active');
     }

@@ -10,7 +10,6 @@ function Irc (host, port, nick, password) {
     this.connection.connected = false;
     this.connection.totallyconnected = false;
     this.connection.alreadyerrored = false;
-    this.connection.channelcount = 0;
     // When the connection is open, send some data to the server
     this.connection.onopen = function () {
         this.lsend("CAP REQ :sasl");
@@ -85,13 +84,13 @@ function Irc (host, port, nick, password) {
                   var type = "user";
                   if($("#frame-user-" + channel).length == 0) {
                     //it doesn't exist, create it!
-                    $("#group_list").append('<a href="#frame-user-{0}" onclick="activate(this); $(this).find(\'.badge\').hide(); $(this).find(\'.badge\').html(\'0\')" class="list-group-item" data-toggle="tab"><span class="badge" id="counter-user-{0}">0</span>{0}</a>'.format(nick));
+                    $("#group_list").append('<a id="select-user-{0}" href="#frame-user-{0}" onclick="activate(this); $(this).find(\'.badge\').hide(); $(this).find(\'.badge\').html(\'0\')" class="list-group-item" data-toggle="tab"><span class="badge" id="counter-user-{0}" style="display: none;">0</span>{0}</a>'.format(nick));
                     $("#message_box").append('<div class="media well tab-pane fade" id="frame-user-{0}"></div>'.format(nick));
                   }
                 }
                 var active = $('#group_list .active').clone() // TODO optimize
                 active.find('.badge').remove()
-                if(channel != active){
+                if(channel != active.html()){
                   var scount = $("#counter-"+type+"-"+channel).html();
                   var count = parseInt(scount);
                   $("#counter-"+type+"-"+channel).html(count+1);
@@ -108,9 +107,10 @@ function Irc (host, port, nick, password) {
                 var channel = ircdata['params'][0];
                 channel = channel.replace("#", "")
                 if(nick == this.nick){
-                    $("#group_list").append('<a href="#frame-channel-{0}" onclick="activate(this); $(this).find(\'.badge\').hide(); $(this).find(\'.badge\').html(\'0\')" class="list-group-item" data-toggle="tab"><span class="badge" id="counter-channel-{0}">0</span>{0}</a>'.format(channel));
+                    $("#group_list").append('<a id="select-channel-{0}" href="#frame-channel-{0}" onclick="activate(this); $(this).find(\'.badge\').hide(); $(this).find(\'.badge\').html(\'0\')" class="list-group-item" data-toggle="tab"><span class="badge" id="counter-channel-{0}" style="display: none;">0</span>{0}</a>'.format(channel));
                     $("#message_box").append('<div class="media well tab-pane fade" id="frame-channel-{0}"></div>'.format(channel));
-                    this.channelcount++;
+                    activate($("#select-channel-"+channel).get(0));
+                    $(window).scrollTop($('#frame-channel-'+channel).position());
                 }
          }
     };
