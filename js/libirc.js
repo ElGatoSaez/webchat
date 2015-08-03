@@ -10,6 +10,9 @@ function Irc (host, port, nick, cookie) {
     this.connection.connected = false;
     this.connection.totallyconnected = false;
     this.connection.alreadyerrored = false;
+
+    this.userAvatar = new Array();
+
     // When the connection is open, send some data to the server
     this.connection.onopen = function () {
         this.lsend("CAP REQ :sasl");
@@ -96,8 +99,14 @@ function Irc (host, port, nick, cookie) {
                   $("#counter-"+type+"-"+channel).html(count+1);
                   $("#counter-"+type+"-"+channel).show();
                 }
-                var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
-                              <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, Autolinker.link( parseColors(escapeHtml(message)), {truncate: 25}  ));
+                if(window.irc.userAvatar[nick] == undefined){
+                    getAvatar(nick);
+                    hash=""
+                } else {
+                  hash=window.irc.userAvatar[nick]
+                }
+                var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://www.gravatar.com/avatar/{2}" class="media-object avatar-{0}"></a>\
+                              <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(nick, Autolinker.link( parseColors(escapeHtml(message)), {truncate: 25}  ), hash);
                 var t = $('#message_box')[0].scrollHeight - $('#message_box').scrollTop();
                 if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
                 $("#frame-"+type+"-"+((type=="user")?nick:channel)).append(parsed);

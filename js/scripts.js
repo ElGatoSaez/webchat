@@ -88,9 +88,14 @@ function sendMessage(message){
     var type = clone.attr('href').split("-")[1];
     $('#chattext').data("wysihtml5").el.context.innerHTML = "";
     //Put it on our window!
-
-    var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://lorempixel.com/64/64/" class="media-object"></a>\
-                  <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(window.irc.connection.nick, Autolinker.link(message, {truncate: 25}));
+    if(window.irc.userAvatar[window.irc.connection.nick] == undefined){
+        getAvatar(window.irc.connection.nick);
+        hash=""
+    } else {
+      hash=window.irc.userAvatar[window.irc.connection.nick]
+    }
+    var parsed = '<div class="media well"><a href="#" class="pull-left"><img alt="{0}\'s avatar" src="http://www.gravatar.com/avatar/{2}" class="media-object avatar-{0}"></a>\
+                  <div class="media-body"><h4>{0}</h4>{1}</div></div>'.format(window.irc.connection.nick, Autolinker.link(message, {truncate: 25}), hash);
 
     var t = $('#message_box')[0].scrollHeight - $('#message_box').scrollTop();
     if(t==$('#message_box').outerHeight() || t==$('#message_box').outerHeight()-1 || t==$('#message_box').outerHeight()+1){var bottom=true}else{var bottom=false;}
@@ -205,6 +210,22 @@ function getCookie(data){
            dataType: "json",
            success: function (response) {
                window.irc = new Irc("omega.hira.io", 8765, data["nick"], response["authcookie"]);
+           },
+           error: function (xhr, status) {
+               console.error(xhr);
+           }
+       });
+}
+function getAvatar(nick){
+  $.ajax({
+           url: "https://auth.polsaker.com/getHash",
+           type: "POST",
+           crossDomain: true,
+           data: {user: nick},
+           dataType: "json",
+           success: function (response) {
+               window.irc.userAvatar[nick] = response["hash"]
+               $(".avatar-"+nick).attr("src", "http://www.gravatar.com/avatar/"+response["hash"]);
            },
            error: function (xhr, status) {
                console.error(xhr);
