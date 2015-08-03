@@ -30,7 +30,7 @@ function connect(data){
     $('#remember').attr('disabled', true);
     $('#btnSubmit').button('loading');
 
-    window.irc = new Irc("omega.hira.io", 8765, data["nick"], data["password"]);
+    getCookie(data);
 }
 
 $(document).ready(function(){
@@ -195,4 +195,19 @@ function parseColors(message) {
     }
     message = message.replace(/\u000f/g, ''); // TODO: Parse those "end of everything" codes.
     return message;
+}
+function getCookie(data){
+  $.ajax({
+           url: "https://auth.polsaker.com/auth",
+           type: "POST",
+           crossDomain: true,
+           data: {user: data["nick"], password: data["password"]},
+           dataType: "json",
+           success: function (response) {
+               window.irc = new Irc("omega.hira.io", 8765, data["nick"], response["authcookie"]);
+           },
+           error: function (xhr, status) {
+               console.error(xhr);
+           }
+       });
 }

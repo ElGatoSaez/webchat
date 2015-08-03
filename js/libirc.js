@@ -1,9 +1,9 @@
-function Irc (host, port, nick, password) {
+function Irc (host, port, nick, cookie) {
     this.host = host;
     this.port = port;
     this.connection = new WebSocket('ws://'+this.host+':'+this.port);
     this.connection.nick = nick;
-    this.connection.password = password;
+    this.connection.cookie = cookie;
     this.connection.realname = "Hira's WebChat";
     this.connection.user = "webchat";
 
@@ -35,12 +35,12 @@ function Irc (host, port, nick, password) {
         }
         ircdata = JSON.parse(e.data)
         console.debug(e.data);
-
+        var cookie = ""
         // IRC parsing and stuff!
         if(ircdata['verb'] == "CAP" && ircdata['params'][1] == "ACK"){ // SASL ACK!
-            this.lsend("AUTHENTICATE PLAIN");
+            this.lsend("AUTHENTICATE AUTHCOOKIE");
         }else if(ircdata['verb'] == "AUTHENTICATE" && ircdata['params'][0] == "+"){
-            this.lsend("AUTHENTICATE " + btoa(this.nick + "\0" + this.nick + "\0" + this.password));
+            this.lsend("AUTHENTICATE " + btoa(this.nick + "\0" + this.nick + "\0" + this.cookie));
         }else if(ircdata['verb'] == "903"){ // SASL auth successful!
             this.lsend("CAP END");
             this.lsend("NICK "+this.nick);
